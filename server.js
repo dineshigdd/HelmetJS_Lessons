@@ -9,17 +9,18 @@ var fs = require('fs');
 var path = require('path');
 var helmet = require('helmet');
 
-app.use(helmet.hidePoweredBy({ setTo:'thisCanBeAnythingToWord'}));
 
 app.use(function(req, res, next) {
   res.set({
     "Access-Control-Allow-Origin" : "*",
     "Access-Control-Allow-Headers" : "Origin, X-Requested-With, content-type, Accept"
   });
-  app.disable('x-powered-by'); 
+  app.disable('x-powered-by');  
   next();
+  
 });
 
+app.use(helmet.hidePoweredBy({ setTo:'thisCanBeAnythingToWord'}));
 
 app.get('/file/*?', function(req, res, next) {
   if(req.params[0] === '.env') { return next({status: 401, message: 'ACCESS DENIED'}) }
