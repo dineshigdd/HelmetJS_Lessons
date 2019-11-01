@@ -175,8 +175,13 @@ app.use(helmet.noCache());
 // in the `"'self'"` keyword, the single quotes are part of the keyword itself, 
 // so it needs to be enclosed in **double quotes** to be working.
 
-
-     
+app.use(helmet.contentSecurityPolicy({ 
+  directives:
+    {
+      defaultSrc:["'self'"],
+      scriptSrc: ["'self'",'trusted-cdn.com']
+    }
+}));    
         
 
 /** TIP: */ 
@@ -186,7 +191,7 @@ app.use(helmet.noCache());
 // but these can be enabled if necessary. You can also disable or 
 // set any other middleware individually, using a configuration object.
 
-// // - Example - 
+// - Example - 
 // app.use(helmet({
 //   frameguard: {              // configure
 //     action: 'deny'
