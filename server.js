@@ -15,12 +15,11 @@ app.use(function(req, res, next) {
     "Access-Control-Allow-Origin" : "*",
     "Access-Control-Allow-Headers" : "Origin, X-Requested-With, content-type, Accept"
   });
-  app.disable('x-powered-by');  
-  next();
-  
+ app.disable('x-powered-by');      
+  app.use(helmet.hidePoweredBy({ setTo: 'PHP 4.2.0' }));
+  next();  
 });
 
-app.use(helmet.hidePoweredBy({ setTo:'thisCanBeAnythingToWord'}));
 
 app.get('/file/*?', function(req, res, next) {
   if(req.params[0] === '.env') { return next({status: 401, message: 'ACCESS DENIED'}) }
