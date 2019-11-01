@@ -7,7 +7,6 @@ var express = require('express');
 var app = express();
 var fs = require('fs');
 var path = require('path');
-var helmet = require('helmet');
 
 
 app.use(function(req, res, next) {
@@ -15,8 +14,7 @@ app.use(function(req, res, next) {
     "Access-Control-Allow-Origin" : "*",
     "Access-Control-Allow-Headers" : "Origin, X-Requested-With, content-type, Accept"
   });
- app.disable('x-powered-by');      
-  app.use(helmet.hidePoweredBy({ setTo: 'PHP 4.2.0' }));
+ app.disable('x-powered-by');       
   next();  
 });
 
