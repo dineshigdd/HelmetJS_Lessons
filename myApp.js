@@ -175,9 +175,10 @@ app.use(helmet.noCache());
 // in the `"'self'"` keyword, the single quotes are part of the keyword itself, 
 // so it needs to be enclosed in **double quotes** to be working.
 
-app.use(helmet.contentSecurityPolicy([" 'self'"]));
 
-Content-Security-Policy: script-src 'self' https://apis.google.com
+     
+        
+
 /** TIP: */ 
 
 // `app.use(helmet())` will automatically include all the middleware
