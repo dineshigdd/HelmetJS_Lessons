@@ -132,7 +132,7 @@ app.use(helmet.hsts({ maxAge: ninetyDaysInSeconds}));
 // DNS prefetching, at the cost of a performance penalty.
 
 // Use `helmet.dnsPrefetchControl()`
-
+app.use(helmet.dnsPrefetchControl());
 
 
 /** 9) Disable Client-Side Caching - `helmet.noCache()` */
@@ -144,7 +144,7 @@ app.use(helmet.hsts({ maxAge: ninetyDaysInSeconds}));
 // use this option only when there is a real need.
 
 // Use helmet.noCache()
-
+app.use(helmet.noCache());
 
 
 /** 10) Content Security Policy - `helmet.contentSecurityPolicy()` */
@@ -175,8 +175,9 @@ app.use(helmet.hsts({ maxAge: ninetyDaysInSeconds}));
 // in the `"'self'"` keyword, the single quotes are part of the keyword itself, 
 // so it needs to be enclosed in **double quotes** to be working.
 
+app.use(helmet.contentSecurityPolicy([" 'self'"]));
 
-
+Content-Security-Policy: script-src 'self' https://apis.google.com
 /** TIP: */ 
 
 // `app.use(helmet())` will automatically include all the middleware
